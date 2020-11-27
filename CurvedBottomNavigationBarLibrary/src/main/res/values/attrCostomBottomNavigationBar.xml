@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CostomBottomNavigationView">
+        <attr name="to_top_redius" format="boolean" />
+        <attr name="setAnimation" format="boolean" />
+
+        <attr name="curved_color" format="color" />
+        <attr name="background_color" format="color" />
+
+        <attr name="animation_time" format="integer" />
+        <attr name="default_item_selected" format="integer" />
+    </declare-styleable>
+</resources>
