@@ -409,9 +409,8 @@ public class CurvedBottomNavigationView extends BottomNavigationView {
                 Log.i("*** Value :: ", "StatusBar Height= " + statusBarHeight + " , TitleBar Height = " + titleBarHeight);
 
 
-
                 if (isOnTop)
-                    view.setY(location[1] + viewSelected.getHeight() / 2 - mNavigationBarHeight / 4 - view.getHeight() / 3);
+                    view.setY((location[1] + viewSelected.getHeight() / 2 - mNavigationBarHeight / 4 - view.getHeight() / 3) - titleBarHeight - statusBarHeight );
                 else
                     view.setY(((location[1]
                             + viewSelected.getHeight() / 2
