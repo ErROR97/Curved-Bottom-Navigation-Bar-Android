@@ -2,6 +2,7 @@ package com.error.curvedbottomnavigationbarlibrary;
 
 
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -9,11 +10,14 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -395,17 +399,28 @@ public class CurvedBottomNavigationView extends BottomNavigationView {
                 //int yRedius = ((mNavigationBarHeight / 3) + view.getHeight() / 10) + (((mNavigationBarHeight / 3) + view.getHeight() / 10) / 2);
 
 
+                Rect rectangle = new Rect();
+                Window window = ((Activity) getContext()).getWindow();
+                window.getDecorView().getWindowVisibleDisplayFrame(rectangle);
+                int statusBarHeight = rectangle.top;
+                int contentViewTop = window.findViewById(Window.ID_ANDROID_CONTENT).getTop();
+                int titleBarHeight = contentViewTop - statusBarHeight;
+
+                Log.i("*** Value :: ", "StatusBar Height= " + statusBarHeight + " , TitleBar Height = " + titleBarHeight);
+
+
+
                 if (isOnTop)
                     view.setY(location[1] + viewSelected.getHeight() / 2 - mNavigationBarHeight / 4 - view.getHeight() / 3);
                 else
-                    view.setY((location[1]
+                    view.setY(((location[1]
                             + viewSelected.getHeight() / 2
                             - view.getHeight() / 2)
                             -  ((mNavigationBarHeight / 3)
                             + view.getHeight() / 10)
                             + (((mNavigationBarHeight / 3)
                             + view.getHeight() / 10) / 2)
-                            / 2);
+                            / 2) - titleBarHeight - statusBarHeight );
 
                 itemSelectedView = view;
                 isViewCreated = true;
